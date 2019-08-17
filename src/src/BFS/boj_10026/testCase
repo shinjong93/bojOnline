@@ -1,0 +1,60 @@
+5
+RRRBB
+GGBBB
+BBBRR
+BBRRR
+RRRRR
+-> 4 3
+
+
+5
+BGBRB
+GBRBG
+BGBRB
+GBRBG
+BGBRB
+-> 25 25
+
+3
+RGR
+GRG
+RGR
+-> 9 1
+
+4
+BBBB
+GGGG
+RRRR
+BBBB
+-> 4 3
+
+
+4
+GBBR
+BGRB
+GBBR
+BGRB
+-> 14 12
+
+    static void solve2(int x, int y, int areaNum) {
+        if (visit[x][y] != 0) {
+            return;
+        }
+        visit[x][y] = areaNum;
+        for (int i = 0; i < 4; i++) { // 상하좌우 탐색
+            int nextX = x + dx[i];
+            int nextY = y + dy[i];
+            if (nextX >= 1 && nextX <= N && nextY >= 1 && nextY <= N) { // 좌표 벗어나지 않는 범위에서
+                if (map[x][y] == map[nextX][nextY] || isSame(x,y,nextX,nextY)) { // 현재 영역과 인접 영역이 같은 색상일 경우
+                    solve2(nextX, nextY, areaNum); // 재귀탐색
+                }
+            }
+        }
+    }
+
+            for (int x = 1; x <= N; x++) { // 모든 점에서 재귀탐색 --> 영역 지도가 매 시행마다 업데이트
+                for (int y = 1; y <= N; y++) {
+                    bw.write(visit[x][y] +"");
+                }
+                bw.write("\n");
+            }
