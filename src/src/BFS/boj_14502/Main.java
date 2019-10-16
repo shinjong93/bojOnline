@@ -45,11 +45,11 @@ public class Main {
 
     static void solve(int start, int num) {
         if (num == 3) {
-            copy();
             for (Node node : virus) {
                 progress(node.row, node.col);
             }
             ans = Math.max(ans, count());
+            copy();
             return;
         }
         for (int i = start; i < n * m; i++) {
